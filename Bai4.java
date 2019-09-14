@@ -1,110 +1,69 @@
-package Lab2;
+﻿package Tuan1Lab3;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Bai4 {
+	public String hoTen;
+	public int diem;
 
 	public static void main(String[] args) {
-		int a;
-		Scanner scanner = new Scanner(System.in);
+		Scanner input = new Scanner(System.in);
+		System.out.print("Nhập số sinh viên: ");
+		int n = input.nextInt();
 
-		do {
-			System.out.println("+---------------------------+");
-			System.out.println("  1. Giải phương trình bậc 1 ");
-			System.out.println("  2. Giải phương trình bậc 2 ");
-			System.out.println("  3. Tính tiền điện          ");
-			System.out.println("  4. Kết thúc                ");
-			System.out.println("+---------------------------+");
-			System.out.println("Chọn chức năng:_");
+		ArrayList<Bai4> danhSach = new ArrayList();
 
-			a = scanner.nextInt();
-		} 
-		while (a < 0 && a > 5);
-		switch (a) {
-		case 1:
-			giaiPTB1();
-			break;
-		case 2:
-			giaiPTB2();
-			break;
-		case 3:
-			tinhTienDien();
-			break;
-		default:
-			System.out.println("Kết thúc");
-			break;
+		for (int i = 0; i < n; i++) {
+			input.nextLine();
+			Bai4 x = new Bai4();
+			System.out.println("Thông tin sinh viên thứ " + i);
+			System.out.print("Họ và Tên: ");
+			x.hoTen = input.nextLine();
+			System.out.print("Điểm: ");
+			x.diem = input.nextInt();
+			danhSach.add(x);
 		}
-	}
-
-	public static void giaiPTB1() {
-		double a, b;
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Nhập a: ");
-		a = scanner.nextDouble();
-		System.out.println("Nhập b: ");
-		b = scanner.nextDouble();
-
-		if (a == 0) {
-			if (b == 0) {
-				System.out.println("Phương trình vô số nghiệm");
-			} else {
-				System.out.println("Phương trình vô nghiệm");
-			}
-		} else {
-			System.out.println("Nghiệm của phương trình là: " + -b / a);
+		for (int i = 0; i < danhSach.size(); i++) {
+			System.out.println("Tên: " + danhSach.get(i).hoTen + " Điểm: " + danhSach.get(i).diem);
 		}
-	}
+		for (int i = 0; i < danhSach.size(); i++) {
+			if (danhSach.get(i).diem < 5)
+				System.out.print(danhSach.get(i).hoTen + " hoc luc yeu");
+			else if (danhSach.get(i).diem < 6.5 && danhSach.get(i).diem >= 5)
+				System.out.print(danhSach.get(i).hoTen + " hoc luc trung binh");
+			else if (danhSach.get(i).diem < 7.5 && danhSach.get(i).diem >= 6.5)
+				System.out.print(danhSach.get(i).hoTen + " hoc luc kha");
+			else if (danhSach.get(i).diem < 9 && danhSach.get(i).diem >= 7.5)
+				System.out.print(danhSach.get(i).hoTen + " hoc luc gioi");
+			else if (danhSach.get(i).diem >= 9)
+				System.out.print(danhSach.get(i).hoTen + " hoc luc xuat sac");
+			else
+				System.out.print("diem nhap sai !");
+			System.out.println("");
 
-	public static void giaiPTB2() {
-		double a, b, c, delta;
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Nhập a: ");
-		a = scanner.nextDouble();
-		System.out.println("Nhập b: ");
-		b = scanner.nextDouble();
-		System.out.println("Nhập c: ");
-		c = scanner.nextDouble();
+		}
 
-		if (a == 0) {
-			if (b == 0) {
-				if (c == 0) {
-					System.out.println("Phương trình vô số nghiệm");
-				} 
-				else {
-					System.out.println("Phương trình vô nghiệm");
+		// Sắp xếp danh sách theo số điểm tăng dần!
+		Collections.sort(danhSach, new Comparator<Bai4>() {
+			public int compare(Bai4 sv1, Bai4 sv2) {
+				if (sv1.diem > sv2.diem) {
+					return 1;
+				} else {
+					if (sv1.diem == sv2.diem) {
+						return 0;
+					} else {
+						return -1;
+					}
 				}
-			} 
-			else {
-				System.out.println("Nghiệm của phương trình là: " + -c / b);
 			}
-		} 
-		else {
-			delta = Math.pow(b, 2) - 4 * a * c;
-			if (delta < 0) {
-				System.out.println("Phương trình vô nghiệm");
-			} 
-			else if (delta == 0) {
-				System.out.println("Phương trình có nghiệm kép là: " + -b / 2 * a);
-			} 
-			else {
-				System.out.println("Phương trình có hai nghiệm phân biệt: x1 = " + (-b + Math.sqrt(delta)) / (2 * a)
-						+ "và x2 = " + (-b - Math.sqrt(delta)) / (2 * a));
-			}
+		});
 
+		System.out.println("Danh sách sắp xếp theo thứ tự điểm tăng dần là: ");
+		for (int i = 0; i < danhSach.size(); i++) {
+			System.out.println("Tên: " + danhSach.get(i).hoTen + " Điểm: " + danhSach.get(i).diem);
 		}
 	}
-
-	public static void tinhTienDien() {
-		double soDien;
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Nhập số điện: ");
-		soDien = scanner.nextDouble();
-
-		if (soDien < 50) {
-			System.out.println("Tiền điện của quý khách là: " + soDien * 1000);
-		} else {
-			System.out.println("Tiền điện của quý khách là: " + soDien * 1200);
-		}
-	}
-
 }
