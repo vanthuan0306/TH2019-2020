@@ -1,0 +1,26 @@
+
+import java.util.Scanner;
+
+public class PTB2 {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Phương trình có dạng aX2 + bX +c = 0 ");
+        
+        System.out.print("Nhập hệ số a: ");
+        float a  = scanner.nextFloat();
+        
+        System.out.print("Nhập hệ số b: ");
+        float b  = scanner.nextFloat();
+        
+        System.out.print("Nhập hằng số c: ");
+        float c  = scanner.nextFloat();
+    
+        //tính delta
+        float delta = (float) Math.pow(b, 2) - 4 * a * c;
+		if (delta < 0) {
+			System.out.println("Không có giá trị căn delta");
+		} else {
+			System.out.println("Căn delta là: " + Math.sqrt(delta));
+		}
+    }
+}
