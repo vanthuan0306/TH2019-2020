@@ -17,7 +17,5 @@ public class HCN {
         System.out.println("Chu vi HCN:" +ChuVi);
         System.out.println("Diện tích HCN:" +DienTich);
         System.out.println("Cạnh nhỏ nhất" +min );
-  
     }
-    
 }
