@@ -1,1 +1,3 @@
-# TH2019-2020
+# ứng dụng Java
+# Phạm Văn Thuận
+# 
