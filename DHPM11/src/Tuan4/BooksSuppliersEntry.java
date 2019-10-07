@@ -407,7 +407,7 @@ public class BooksSuppliersEntry extends JFrame {
         PreparedStatement preStmt;
         try {
             sql = "INSERT INTO"
-                    + "BooksSuppliers VALUS (?,?,?,?,?,?)";
+                    + " BooksSuppliers VALUES (?,?,?,?,?,?)";
             conn = DriverManager.getConnection(url,user,password);
             preStmt = conn.prepareStatement(sql);
             preStmt.setString(1, strSupplierName);
@@ -418,7 +418,7 @@ public class BooksSuppliersEntry extends JFrame {
             preStmt.setString(6, strRemarks);
             
             row = preStmt.executeUpdate();
-            System.out.println("Bạn đã lưu thành công./nSố dòng: " + row);
+            System.out.println("Bạn đã lưu thành công,Số dòng: " + row);
             
             conn.close();
             
